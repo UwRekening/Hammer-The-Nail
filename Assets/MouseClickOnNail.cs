@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MouseClickOnNail : MonoBehaviour
@@ -14,15 +11,14 @@ public class MouseClickOnNail : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 GameObject clickedObject = hit.collider.gameObject;
-                Nail nail = clickedObject.GetComponent<Nail>();
-                IInteractable interactable = clickedObject.GetComponent<IInteractable>();
-                Score score = clickedObject.GetComponent<Score>();
+                IInteractable[] interactable = clickedObject.GetComponents<IInteractable>();
                 RemoveTimer removeTimer = clickedObject.GetComponent<RemoveTimer>();
                 
-                if (nail != null)
+                if (interactable != null)
                 {
-                    interactable.OnHit();
-                    score.OnHit();
+                    foreach (IInteractable onHit in interactable) {
+                        onHit.OnHit();
+                    }
                     if (removeTimer != null) {
                         removeTimer.RemoveTime();
                     }

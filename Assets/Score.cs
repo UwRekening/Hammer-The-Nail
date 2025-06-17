@@ -17,4 +17,10 @@ public class Score : MonoBehaviour, IInteractable
             score += scoreForNail;
         }
     }
+
+    public void OnSpawn() {
+    }
+
+    public void MoveUp() {
+    }
 }

@@ -25,6 +25,14 @@ public class Nail : MonoBehaviour, IInteractable {
         rb.MovePosition(target);
     }
 
+    public void OnSpawn() {
+        
+    }
+
+    public void MoveUp() {
+
+    }
+
     private void Update() {
         if (lifeTime < 0) {
             Destroy(gameObject);

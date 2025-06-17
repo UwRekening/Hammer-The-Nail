@@ -40,4 +40,15 @@ public class MoveDown : MonoBehaviour, IInteractable
 
         Debug.Log($"Hit with speed {swingSpeed:F2}, moved nail {steps} step(s) down");
     }
+
+    public void OnHit() {
+        
+    }
+
+    public void OnSpawn() {
+        
+    }
+
+    public void MoveUp() {
+    }
 }
