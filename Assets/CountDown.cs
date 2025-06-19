@@ -15,6 +15,7 @@ public class CountDown : MonoBehaviour
     [SerializeField] private AudioClip backgroundclip;
     [SerializeField] private GameObject scoreAndTimer;
     [SerializeField] private TMP_Text countDownText;
+    [SerializeField] private TMP_Text eText;
     [SerializeField] private Volume volume;
 
     private bool countdownRunning;
@@ -64,6 +65,7 @@ public class CountDown : MonoBehaviour
                 
                 countdownRunning = false;
                 countDownText.text = "";
+                eText.text = "";
                 countDownAudio.clip = backgroundclip;
                 countDownAudio.Play();
                 

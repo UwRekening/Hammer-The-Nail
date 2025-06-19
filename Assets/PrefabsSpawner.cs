@@ -8,7 +8,6 @@ public class PrefabsSpawner : MonoBehaviour {
     [SerializeField] private GameObject[] spawnPoints;
     [SerializeField] private GameObject[] prefabs;
     List<GameObject> availableSpawnPoints = new();
-    
     public event Action<GameObject> OnSpawn;
     
     void Start() {
@@ -18,7 +17,14 @@ public class PrefabsSpawner : MonoBehaviour {
 
     public void SpawnRandomAmount(int amount) {
 
+        
         List<GameObject> availableSpawnPoints = this.availableSpawnPoints;
+
+        if (availableSpawnPoints.Count == 0)
+        {
+            availableSpawnPoints.AddRange(spawnPoints);
+        }
+        
         for (int i = 0; i < amount && availableSpawnPoints.Count > 0; i++) {
             int index = Random.Range(0, availableSpawnPoints.Count - 1);
             GameObject spawnPoint = availableSpawnPoints[index];

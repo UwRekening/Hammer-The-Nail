@@ -15,15 +15,16 @@ public class RemoveTimer : MonoBehaviour, IInteractable {
         gameLogic.timeRemaining -= removeTime;
     }
 
-    public void OnHit() {
-        
-    }
-
-    public void OnSpawn() {
+    public void MoveDown() {
         
     }
 
     public void MoveUp() {
 
+    }
+
+    public void DeleteObject()
+    {
+        
     }
 }

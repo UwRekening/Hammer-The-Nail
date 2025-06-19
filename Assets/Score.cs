@@ -9,7 +9,7 @@ public class Score : MonoBehaviour, IInteractable
     public int scoreForNail = 2;
     public int minScoreForNail = 0;
     
-    public void OnHit() {
+    public void MoveDown() {
         if (scoreForNail == 0) {
             score -= minScoreForNail;
         }
@@ -18,9 +18,11 @@ public class Score : MonoBehaviour, IInteractable
         }
     }
 
-    public void OnSpawn() {
+    public void MoveUp() {
     }
 
-    public void MoveUp() {
+    public void DeleteObject()
+    {
+        
     }
 }

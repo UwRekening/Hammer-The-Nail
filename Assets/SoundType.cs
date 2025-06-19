@@ -6,6 +6,7 @@ public enum SoundType
 {
     Slap,
     NailHit,
+    NailExplosion,
     ButtonClick,
     TimerOver,
     TimerStart,

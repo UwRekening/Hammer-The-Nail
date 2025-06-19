@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2167210389531719687}
   - component: {fileID: 6666150222068907132}
   - component: {fileID: 6170216772215158080}
+  - component: {fileID: 1192860396827071982}
   m_Layer: 0
   m_Name: MinScoreNail
   m_TagString: Untagged
@@ -100,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa6fa2604858a7b44b5f789d1a3fb2a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 5
+  lifeTime: 7
 --- !u!65 &5385455545893394676
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -177,4 +178,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   scoreForNail: 0
-  minScoreForNail: 0
+  minScoreForNail: 5
+--- !u!114 &1192860396827071982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2812032970623808783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4ee73757dcbc524ebda448680ccc361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

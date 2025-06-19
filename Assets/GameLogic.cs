@@ -7,6 +7,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.HighDefinition;
+using UnityEngine.SceneManagement;
 
 public class GameLogic : MonoBehaviour {
     [SerializeField] private TMP_Text time;
@@ -16,6 +17,8 @@ public class GameLogic : MonoBehaviour {
     private SoundManager soundManager;
     private bool gameOver;
     private bool gameStarted;
+    private MouseClickOnNail mouseClickOnNail;
+    private MoveDown[] moveDown;
     
     [SerializeField] GameObject gameOverScreen;
     [SerializeField] TMP_Text scoreText;
@@ -26,6 +29,8 @@ public class GameLogic : MonoBehaviour {
     private void Start() {
         soundManager = GetComponent<SoundManager>();
         scoreManager = FindObjectOfType<ScoreManager>();
+        mouseClickOnNail = GetComponent<MouseClickOnNail>();
+        moveDown = FindObjectsOfType<MoveDown>();
         timeRemaining = gameDuration;
     }
 
@@ -46,6 +51,11 @@ public class GameLogic : MonoBehaviour {
             }
         } else if (gameOver) {
             Time.timeScale = 0;
+            mouseClickOnNail.enabled = false;
+            foreach (MoveDown move in moveDown)
+            {
+                move.enabled = false;
+            }
             gameOverScreen.SetActive(true);
             scoreText.text = scoreManager.GetScore().ToString();
 
@@ -53,5 +63,10 @@ public class GameLogic : MonoBehaviour {
                 depthOfField.active = true;
             }
         }
+    }
+
+    public void StartAgain()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

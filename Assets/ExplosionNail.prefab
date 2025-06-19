@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 6628243899471462697}
   - component: {fileID: 3960076925413031515}
   - component: {fileID: 1729015073403892614}
+  - component: {fileID: 3411200390265189339}
   m_Layer: 0
   m_Name: ExplosionNail
   m_TagString: Untagged
@@ -103,6 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa6fa2604858a7b44b5f789d1a3fb2a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifeTime: 12
 --- !u!65 &5385455545893394676
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -163,8 +165,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62e4764e159a59441933515318fd8151, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundType: 1
-  clip: {fileID: 8300000, guid: 4f4ccdfcc129d6d4dab604ec40a46a39, type: 3}
+  soundType: 2
+  clip: {fileID: 8300000, guid: 20595927de9aa2942a3c4c87b2ccea9b, type: 3}
 --- !u!114 &7374533530960624643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4980,3 +4982,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   scoreForNail: 5
+  minScoreForNail: 0
+--- !u!114 &3411200390265189339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2812032970623808783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4ee73757dcbc524ebda448680ccc361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

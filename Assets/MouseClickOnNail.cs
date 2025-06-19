@@ -14,10 +14,23 @@ public class MouseClickOnNail : MonoBehaviour
                 IInteractable[] interactable = clickedObject.GetComponents<IInteractable>();
                 RemoveTimer removeTimer = clickedObject.GetComponent<RemoveTimer>();
                 
+                MoveDown moveDown = clickedObject.GetComponent<MoveDown>();
+                MoveUp moveUp = clickedObject.GetComponent<MoveUp>();
+                Delete delete = clickedObject.GetComponent<Delete>();
+                
                 if (interactable != null)
                 {
                     foreach (IInteractable onHit in interactable) {
-                        onHit.OnHit();
+                        if (moveDown != null)
+                        {
+                            onHit.MoveDown();
+                        } else if (moveUp != null)
+                        {
+                            onHit.MoveUp();
+                        } else if (delete != null)
+                        {
+                            onHit.DeleteObject();
+                        }
                     }
                     if (removeTimer != null) {
                         removeTimer.RemoveTime();

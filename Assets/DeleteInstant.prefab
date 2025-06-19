@@ -16,9 +16,9 @@ GameObject:
   - component: {fileID: 2167210389531719687}
   - component: {fileID: 6666150222068907132}
   - component: {fileID: 4465778470431924330}
-  - component: {fileID: 9076354094233906185}
+  - component: {fileID: 3115585983555170594}
   m_Layer: 0
-  m_Name: NormalNail
+  m_Name: DeleteInstant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ad03c0c867a47c243b3c9901799b5c93, type: 2}
+  - {fileID: 2100000, guid: fde95a328698aba4b9e5476f04a3bf8f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -179,7 +179,7 @@ MonoBehaviour:
   score: 0
   scoreForNail: 2
   minScoreForNail: 0
---- !u!114 &9076354094233906185
+--- !u!114 &3115585983555170594
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -188,6 +188,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2812032970623808783}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4ee73757dcbc524ebda448680ccc361, type: 3}
+  m_Script: {fileID: 11500000, guid: 907d52ba9b9991345be3fb83f56828a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

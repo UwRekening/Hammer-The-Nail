@@ -5,29 +5,32 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     [SerializeField] private AudioSource sfxSource;
-    [SerializeField] private List<SoundEntry> soundEntries;
+    [SerializeField] private List<SoundEntry> soundEntries = new();
 
-    private Dictionary<SoundType, AudioClip> soundDict;
-
-    private void Start() {
-        soundEntries.AddRange(FindObjectsOfType<SoundEntry>());
-        BuildSoundDictionary();
-        
+    private Dictionary<SoundType, AudioClip> soundDict = new();
+    
+    private void Update()
+    {
+        AddNewSoundEntries();
     }
 
-
-    private void BuildSoundDictionary()
+    private void AddNewSoundEntries()
     {
-        soundDict = new Dictionary<SoundType, AudioClip>();
-        foreach (var entry in soundEntries)
+        foreach (var entry in FindObjectsOfType<SoundEntry>())
         {
-            if (!soundDict.ContainsKey(entry.soundType))
-                soundDict.Add(entry.soundType, entry.clip);
+            if (!soundEntries.Contains(entry))
+            {
+                soundEntries.Add(entry);
+                if (!soundDict.ContainsKey(entry.soundType))
+                    soundDict.Add(entry.soundType, entry.clip);
+            }
         }
     }
-
-    public void PlaySound(SoundType type) {
-        if (soundDict.TryGetValue(type, out AudioClip clip)) {
+    
+    public void PlaySound(SoundType type)
+    {
+        if (sfxSource != null && soundDict.TryGetValue(type, out AudioClip clip))
+        {
             sfxSource.clip = clip;
             sfxSource.Play();
         }

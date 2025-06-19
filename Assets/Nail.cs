@@ -1,4 +1,5 @@
 using System;
+using Refract.AXIS;
 using UnityEngine;
 
 public class Nail : MonoBehaviour, IInteractable {
@@ -16,7 +17,7 @@ public class Nail : MonoBehaviour, IInteractable {
         soundManager = FindObjectOfType<SoundManager>();
     }
 
-    public void OnHit() {
+    public void MoveDown() {
         soundManager.PlaySound(SoundType.NailHit);
         
         Vector3 down = Vector3.down * moveStep;
@@ -25,12 +26,19 @@ public class Nail : MonoBehaviour, IInteractable {
         rb.MovePosition(target);
     }
 
-    public void OnSpawn() {
+    public void MoveUp()
+    {
+        soundManager.PlaySound(SoundType.NailHit);
         
+        Vector3 down = Vector3.up * 20f;
+        Vector3 target = rb.position + down;
+        
+        rb.MovePosition(target);
     }
 
-    public void MoveUp() {
-
+    public void DeleteObject()
+    {
+        Destroy(gameObject);
     }
 
     private void Update() {
@@ -48,6 +56,7 @@ public class Nail : MonoBehaviour, IInteractable {
             BoxCollider boxCollider = GetComponent<BoxCollider>();
             boxCollider.enabled = false;
             prefabSpawner.SpawnRandomAmount(1);
+            lifeTime = 3;
         }
     }
 }

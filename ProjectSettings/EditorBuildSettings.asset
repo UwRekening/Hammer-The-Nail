@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/OutdoorsScene.unity
-    guid: 8124e5870f4fd4c779e7a5f994e84ad1
+    path: Assets/Mainmenu.unity
+    guid: 77959174e117b604f9475d5131dd5a3d
+  - enabled: 1
+    path: Assets/Hammer The Nails.unity
+    guid: 4fd6f6a629c5fe44d9d18a94f1a2ffed
   m_configObjects: {}
