@@ -24,19 +24,32 @@ Selecteer je gewenste inputmethode via de UI voor de game start.
 
 ---
 
-## 🎯 Doel van het spel
 
-Sla zoveel mogelijk spijkers binnen de tijd.  
-Elke spijker heeft een ander effect:
+## 🎯 Speldoel
+**Sla zoveel mogelijk spijkers binnen de tijd.**  
+Maar let op: *elke spijker heeft een unieke combinatie van effecten* die je gameplay beïnvloeden.
 
-- 🟢 **Normal Nail** – gewone score  
-- ✨ **Extra Score Nail** – bonuspunten  
-- 🔻 **Min Score Nail** – verlaagt je score  
-- 🔺 **Move Up Nail** – spijker schiet omhoog  
-- ⏱️ **Remove Time Nail** – verkort je speeltijd  
-- 💣 **Explosion Nail** – shake en extra impact  
-- ❌ **Delete Nail** – verwijdert zichzelf
+---
 
+## ⚙️ Variatiecomponenten
+
+Alle spijker-prefabs zijn opgebouwd uit **herbruikbare componenten** die bepalen wat er gebeurt bij een interactie.  
+Deze componenten worden gecombineerd tot unieke variaties.
+
+### ✅ Beschrijving van de componenten
+
+| Component         | Beschrijving                                                              | Gameplay Effect                            |
+|------------------|---------------------------------------------------------------------------|---------------------------------------------|
+| `Score`          | Verhoogt of verlaagt de score van de speler bij interactie                | 🎯 Beïnvloedt het scoreverloop              |
+| `Sound`          | Speelt een geluid af bij aanraking                                        | 🔊 Feedback en sfeer                        |
+| `CameraShake`    | Laat de camera kort trillen                                               | 💥 Voelt impactvol aan                      |
+| `ParticleEmitter`| Activeert een particle effect (explosie, rook, vonken, enz.)              | ✨ Visuele flair of explosiegevoel          |
+| `SlowTime`       | Vertraagt tijdelijk de tijd in de game                                    | 🐢 Dramatisch effect / tijdelijk voordeel   |
+
+⚠️ Let op
+
+    🔴 Vermijd spijkers met een HeavyCameraShake effect.
+    Deze spijkers zorgen voor een zware visuele verstoring én geven géén extra punten. Ze kosten je tijd en focus zonder beloning. Richt je liever op spijkers die wél bijdragen aan je score!
 ---
 
 ## ⚙️ Features
