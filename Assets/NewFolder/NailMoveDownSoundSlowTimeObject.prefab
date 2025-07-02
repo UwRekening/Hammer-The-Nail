@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa6fa2604858a7b44b5f789d1a3fb2a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveStep: 0.2
   lifeTime: 12
 --- !u!114 &7587715974587445774
 MonoBehaviour:
@@ -174,7 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62e4764e159a59441933515318fd8151, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundType: 1
+  soundType: 0
   clip: {fileID: 8300000, guid: 4f4ccdfcc129d6d4dab604ec40a46a39, type: 3}
 --- !u!114 &6451585047681878190
 MonoBehaviour:
@@ -188,5 +189,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31281911914941b8947e94dc702d72c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 5
+  duration: 1
   timeScale: 0.2

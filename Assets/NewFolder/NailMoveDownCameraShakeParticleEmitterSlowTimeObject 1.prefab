@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa6fa2604858a7b44b5f789d1a3fb2a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveStep: 0.2
   lifeTime: 12
 --- !u!114 &7587715974587445774
 MonoBehaviour:
@@ -4980,7 +4981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e8e4db32fdc4f408e75868a15bdb6f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 1
+  duration: 0.3
   magnitude: 0.5
 --- !u!114 &7373049710362530532
 MonoBehaviour:

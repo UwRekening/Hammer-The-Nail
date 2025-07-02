@@ -20,6 +20,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void StartGame()
     {
+        Time.timeScale = 1f; // Reset timescale
         SceneManager.LoadScene(1); // Consider using a constant or build index variable
     }
 }

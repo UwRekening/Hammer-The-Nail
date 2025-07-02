@@ -25,6 +25,7 @@ public class GameLogic : MonoBehaviour
 
     private SoundManager soundManager;
     private IPlayerBehaviour[] playerBehaviours;
+    private Nail[] nails;
 
     public float timeRemaining;
     private bool gameOver;
@@ -35,13 +36,14 @@ public class GameLogic : MonoBehaviour
     /// </summary>
     private void Start()
     {
+        Time.timeScale = 1f;
+        
         soundManager = GetComponent<SoundManager>();
         if (scoreManager == null)
         {
             scoreManager = FindObjectOfType<ScoreManager>();
         }
 
-        playerBehaviours = FindObjectsOfType<MonoBehaviour>().OfType<IPlayerBehaviour>().ToArray();
         timeRemaining = gameDuration;
     }
 
@@ -53,6 +55,15 @@ public class GameLogic : MonoBehaviour
         gameStarted = true;
         gameOver = false;
         timeRemaining = gameDuration;
+        
+        playerBehaviours = FindObjectsOfType<MonoBehaviour>().OfType<IPlayerBehaviour>().ToArray();
+        foreach (var behaviour in playerBehaviours)
+        {
+            if (behaviour is MonoBehaviour mono)
+            {
+                Debug.unityLogger.Log(behaviour.GetType());
+            }
+        }
     }
 
     /// <summary>
@@ -88,13 +99,11 @@ public class GameLogic : MonoBehaviour
 
         soundManager.PlaySound(SoundType.TimerOver);
 
-        // Disable all IPlayerBehaviour scripts
-        foreach (var behaviour in playerBehaviours)
+        nails = FindObjectsOfType<Nail>().ToArray();
+        
+        foreach (Nail nail in nails)
         {
-            if (behaviour is MonoBehaviour mono)
-            {
-                mono.enabled = false;
-            }
+            Destroy(nail.gameObject);
         }
 
         gameOverScreen.SetActive(true);
