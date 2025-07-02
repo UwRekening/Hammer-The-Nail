@@ -1,16 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+/// <summary>
+/// Defines the different types of sound effects used in the game.
+/// </summary>
 public enum SoundType
 {
-    Slap,
     NailHit,
     NailExplosion,
-    ButtonClick,
     TimerOver,
-    TimerStart,
-    RecordStop,
     CountdownStart,
     CountdownStop
 }

@@ -1,72 +1,126 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Timers;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.HighDefinition;
 using UnityEngine.SceneManagement;
+using DefaultNamespace;
 
-public class GameLogic : MonoBehaviour {
-    [SerializeField] private TMP_Text time;
+/// <summary>
+/// Central game controller for managing game state, timer, end screen, and player input.
+/// </summary>
+public class GameLogic : MonoBehaviour
+{
+    [Header("UI Elements")]
+    [SerializeField] private TMP_Text timeDisplay;
+    [SerializeField] private GameObject gameOverScreen;
+    [SerializeField] private TMP_Text finalScoreText;
+
+    [Header("Game Settings")]
     [SerializeField] private float gameDuration = 60f;
-    
-    public float timeRemaining;
+
+    [Header("Dependencies")]
+    [SerializeField] private ScoreManager scoreManager;
+    [SerializeField] private Volume postProcessingVolume;
+
     private SoundManager soundManager;
+    private IPlayerBehaviour[] playerBehaviours;
+
+    public float timeRemaining;
     private bool gameOver;
     private bool gameStarted;
-    private MouseClickOnNail mouseClickOnNail;
-    private MoveDown[] moveDown;
-    
-    [SerializeField] GameObject gameOverScreen;
-    [SerializeField] TMP_Text scoreText;
-    [SerializeField] private ScoreManager scoreManager;
 
-    [SerializeField] private Volume _volume;
-
-    private void Start() {
+    /// <summary>
+    /// Initializes references and collects all active player behaviours.
+    /// </summary>
+    private void Start()
+    {
         soundManager = GetComponent<SoundManager>();
-        scoreManager = FindObjectOfType<ScoreManager>();
-        mouseClickOnNail = GetComponent<MouseClickOnNail>();
-        moveDown = FindObjectsOfType<MoveDown>();
+        if (scoreManager == null)
+        {
+            scoreManager = FindObjectOfType<ScoreManager>();
+        }
+
+        playerBehaviours = FindObjectsOfType<MonoBehaviour>().OfType<IPlayerBehaviour>().ToArray();
         timeRemaining = gameDuration;
     }
 
-    public void StartGame() {
+    /// <summary>
+    /// Starts the game and resets all state.
+    /// </summary>
+    public void StartGame()
+    {
         gameStarted = true;
+        gameOver = false;
+        timeRemaining = gameDuration;
     }
-    
-    private void Update() {
-        if (gameStarted) {
+
+    /// <summary>
+    /// Handles the game loop and checks for game over condition.
+    /// </summary>
+    private void Update()
+    {
+        if (gameStarted)
+        {
             timeRemaining -= Time.deltaTime;
             timeRemaining = Mathf.Max(0, timeRemaining);
-            time.text = timeRemaining.ToString("F2") + "s";
-        
-            if (timeRemaining <= 0 && !gameOver) {
-                soundManager.PlaySound(SoundType.TimerOver);
-                gameOver = true;
-                gameStarted = false;
-            }
-        } else if (gameOver) {
-            Time.timeScale = 0;
-            mouseClickOnNail.enabled = false;
-            foreach (MoveDown move in moveDown)
-            {
-                move.enabled = false;
-            }
-            gameOverScreen.SetActive(true);
-            scoreText.text = scoreManager.GetScore().ToString();
 
-            if (_volume.profile.TryGet<DepthOfField>(out DepthOfField depthOfField)) {
-                depthOfField.active = true;
+            timeDisplay.text = $"{timeRemaining:F2}s";
+
+            if (timeRemaining <= 0 && !gameOver)
+            {
+                HandleGameOver();
             }
+        }
+        else if (gameOver)
+        {
+            Time.timeScale = 0;
         }
     }
 
+    /// <summary>
+    /// Triggers game over logic, disables player input, and shows the end screen.
+    /// </summary>
+    private void HandleGameOver()
+    {
+        gameOver = true;
+        gameStarted = false;
+
+        soundManager.PlaySound(SoundType.TimerOver);
+
+        // Disable all IPlayerBehaviour scripts
+        foreach (var behaviour in playerBehaviours)
+        {
+            if (behaviour is MonoBehaviour mono)
+            {
+                mono.enabled = false;
+            }
+        }
+
+        gameOverScreen.SetActive(true);
+        finalScoreText.text = scoreManager.GetTotalScore().ToString();
+
+        if (postProcessingVolume.profile.TryGet(out DepthOfField depthOfField))
+        {
+            depthOfField.active = true;
+        }
+    }
+
+    /// <summary>
+    /// Reloads the current scene and resets time scale.
+    /// </summary>
     public void StartAgain()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    /// <summary>
+    /// Loads the main menu scene (scene index 0).
+    /// </summary>
+    public void MainMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(0);
     }
 }

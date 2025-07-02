@@ -1,18 +1,21 @@
-﻿using System;
+﻿using DefaultNamespace;
+using New_Scripts;
 using UnityEngine;
 
-public class MoveUp : MonoBehaviour
+/// <summary>
+/// When the player enters the trigger, all IInteractable components on the object will receive a MoveUp() call.
+/// </summary>
+public class MoveUp : MonoBehaviour, ICollider
 {
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
-        IInteractable[] interactables = other.GetComponents<IInteractable>();
+        if (!other.GetComponent<PlayerIndicator>()) return;
 
-        if (other.CompareTag("Player"))
+        IInteractable[] interactables = other.GetComponents<IInteractable>();
+        foreach (IInteractable target in interactables)
         {
-            foreach (IInteractable hit in interactables)
-            {
-                hit.MoveUp();
-            }
+            target.MoveUp();
         }
     }
+
 }

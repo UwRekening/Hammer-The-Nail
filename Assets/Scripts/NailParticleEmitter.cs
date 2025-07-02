@@ -1,28 +1,38 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-public class NailParticleEmitter : MonoBehaviour, IInteractable {
-    private ParticleSystem particle;
+
+/// <summary>
+/// Plays a particle and sound effect when the nail is hit (MoveDown).
+/// </summary>
+public class NailParticleEmitter : MonoBehaviour, IInteractable
+{
+    [SerializeField] private ParticleSystem particle;
+    [SerializeField] private SoundType soundToPlay = SoundType.NailExplosion;
+
     private SoundManager soundManager;
-    
-    public void MoveDown() {
-        soundManager = FindObjectOfType<SoundManager>();
-        Debug.Log("Hit");
-        EmitParticle();
-        soundManager.PlaySound(SoundType.NailExplosion);
-    }
 
-    public void MoveUp() {
-    }
-
-    public void DeleteObject()
+    private void Awake()
     {
-        
+        soundManager = FindObjectOfType<SoundManager>();
     }
 
-    private void EmitParticle() {
-        particle = GetComponent<ParticleSystem>();
-        particle.Play();
+    /// <summary>
+    /// Called when the nail is hit. Plays particle and sound effect.
+    /// </summary>
+    public void MoveDown()
+    {
+        if (particle != null)
+        {
+            particle.Play();
+        }
+
+        if (soundManager != null)
+        {
+            soundManager.PlaySound(soundToPlay);
+        }
+
+        Debug.Log("NailParticleEmitter: MoveDown triggered.");
     }
+
+    public void MoveUp() { }
+    public void DeleteObject() { }
 }

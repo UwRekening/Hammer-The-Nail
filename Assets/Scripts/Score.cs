@@ -1,28 +1,47 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// Manages the score for a single interactable object (like a nail).
+/// Adjusts score based on the type of nail interaction.
+/// </summary>
 public class Score : MonoBehaviour, IInteractable
 {
-    public int score = 0;
-    public int scoreForNail = 2;
-    public int minScoreForNail = 0;
-    
-    public void MoveDown() {
-        if (scoreForNail == 0) {
+    [SerializeField] private int scoreForNail = 2;
+    [SerializeField] private int minScoreForNail = 0;
+
+    private int score = 0;
+
+    /// <summary>
+    /// Called when this object is hit or moved down.
+    /// Increases or decreases the score based on the nail configuration.
+    /// </summary>
+    public void MoveDown()
+    {
+        if (scoreForNail == 0)
+        {
             score -= minScoreForNail;
         }
-        else {
+        else
+        {
             score += scoreForNail;
         }
     }
 
-    public void MoveUp() {
+    public void MoveUp()
+    {
+        // Not implemented
     }
 
     public void DeleteObject()
     {
-        
+        // Not implemented
+    }
+
+    /// <summary>
+    /// Gets the current score for this object.
+    /// </summary>
+    public int GetScore()
+    {
+        return score;
     }
 }
